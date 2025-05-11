@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: demo-sqs-sns-consumer
+
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+#      credentials:
+#        profile:
+#          name: default
+
+    sqs:
+      listener:
+        max-number-of-messages: 10
+        visibility-timeout: 30s
+        wait-timeout: 20s
+        queue-attributes-resolver:
+          strategy: never
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    enable:
+      jvm: true
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    org.jdbi.v3: DEBUG
